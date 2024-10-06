@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeatherController;
+use App\Http\Controllers\AirQualityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/weather', [WeatherController::class, 'weatherInfo']);
 Route::get('/hourly-weather', [WeatherController::class, 'hourlyWeatherInfo']);
+
+
+Route::get('/air-quality', [AirQualityController::class, 'airQualityInfo']);

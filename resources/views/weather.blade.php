@@ -14,8 +14,13 @@
 
     </div>
 
+    <div id="air">
+
+    </div>
+
     <!-- Load compiled JavaScript -->
     @vite('resources/js/weather.js')
     @vite('resources/js/hourly-weather.js')
+    @vite('resources/js/air-quality.js')
 </body>
 </html>

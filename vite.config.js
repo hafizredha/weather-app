@@ -9,7 +9,8 @@ export default defineConfig({
                 'resources/css/app.css', 
                 'resources/js/app.js', 
                 'resources/js/weather.js',
-                'resources/js/hourly-weather.js'
+                'resources/js/hourly-weather.js',
+                'resources/js/air-quality.js'
             ], 
             refresh: true,
         }),
