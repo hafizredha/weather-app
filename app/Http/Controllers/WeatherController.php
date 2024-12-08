@@ -25,11 +25,4 @@ class WeatherController extends Controller
             return response()->json(['error' => 'Server Error'], 500);
         }
     }
-
-    public function hourlyWeatherInfo(){
-        $cityId = 1733046;
-        $hourlyWeatherData = $this->weatherService->getHourlyWeather($cityId);
-
-        return $hourlyWeatherData;
-    }
 }

@@ -12,10 +12,16 @@ class WeatherService{
 
     public function getWeather($cityId){
         try {
-            $response = Http::get("https://api.openweathermap.org/data/2.5/weather", [
-                'id'    => $cityId,
-                'appid' => $this->apiKey,
-                'units' => 'metric',
+            $defaultLalitude = "3.085";
+            $defaultLongitude = "101.532";
+            $apiUrl = "https://api.open-meteo.com/v1/forecast";
+            $response = Http::get($apiUrl, [
+                'latitude'    => $defaultLalitude,
+                'longitude' => $defaultLongitude,
+                'current'   => 'temperature_2m,is_day,weather_code',
+                'hourly'    => 'temperature_2m,precipitation_probability',
+                'daily'     => 'weather_code,temperature_2m_max,sunrise,sunset,precipitation_hours',
+                'timezone'  => 'auto',
             ]);
             
             return $response->json();
@@ -23,20 +29,6 @@ class WeatherService{
             return 'OpenWeather Api Error: '.$e->getMessage();
         }
         
-    }
-
-    public function getHourlyWeather($cityId){
-        try {
-            $response = Http::get("https://api.openweathermap.org/data/2.5/forecast", [
-                'id'    => $cityId,
-                'appid' => $this->apiKey,
-                'units' => 'metric',
-            ]);
-            
-            return $response->json();
-        } catch (\Exception $e) {
-            return 'OpenWeather Api Error: '.$e->getMessage();
-        } 
     }
 }
 ?>
