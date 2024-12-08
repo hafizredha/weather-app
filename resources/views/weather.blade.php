@@ -6,21 +6,18 @@
     <title>Vue.js Weather App</title>
 </head>
 <body>
-    <div id="app">
-        
-    </div>
+    <div class="container">
+        <div id="app">
+            
+        </div>
 
-    <div id="hourly">
+        <div id="air">
 
-    </div>
-
-    <div id="air">
-
+        </div>
     </div>
 
     <!-- Load compiled JavaScript -->
     @vite('resources/js/weather.js')
-    @vite('resources/js/hourly-weather.js')
-    @vite('resources/js/air-quality.js')
+    {{-- @vite('resources/js/air-quality.js') --}}
 </body>
 </html>

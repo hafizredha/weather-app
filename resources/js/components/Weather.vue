@@ -1,10 +1,10 @@
 <template>
     <div v-if="weather">
-        <h1>Weather in {{ weather.name }}</h1>
-        <p>Temperature: {{ weather.main.temp }}°C</p>
-        <p>Condition: {{ weather.weather[0].description }}</p>
-        <p>H : {{ weather.main.temp_max }} L : {{ weather.main.temp_min }}</p>
-        <p>Feels like {{ weather.main.feels_like }}</p>
+        <h1>Current Weather</h1>
+        <p>Temperature: {{ weather.current.temperature_2m }}°C</p>
+        <p>Condition: {{ weather.current.weather_code }}</p>
+        <p>Time: {{  weather.current.time }}</p>
+        <p>is Day: {{ weather.current.is_day }}</p>
     </div>
     <div v-else>
         <p>Loading...</p>
