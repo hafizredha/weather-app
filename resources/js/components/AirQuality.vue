@@ -1,11 +1,16 @@
-<template>
-    <div>
-        
-    </div>
-</template>
-
 <script>
+    import { useWeatherStore } from '../stores/weatherStores';
     export default{
+        name: 'AirQuality',
+        data() {
+            return {
+                air_quality: null,
+            };
+        },
+        setup(){
+            const weatherStore = useWeatherStore();
+            return { weatherStore };
+        },
         mounted(){
             this.fetchAirQuality();
         },
@@ -24,3 +29,9 @@
         }
     }
 </script>
+
+<template>
+    <div v-if="weatherStore.weather?.current">
+        {{ weatherStore.weather.current.temperature_2m }}
+    </div>
+</template>

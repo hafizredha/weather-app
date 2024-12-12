@@ -18,9 +18,9 @@ class WeatherService{
             $response = Http::get($apiUrl, [
                 'latitude'    => $defaultLalitude,
                 'longitude' => $defaultLongitude,
-                'current'   => 'temperature_2m,is_day,weather_code',
+                'current'   => 'temperature_2m,is_day,weather_code,relative_humidity_2m,wind_speed_10m',
                 'hourly'    => 'temperature_2m,precipitation_probability',
-                'daily'     => 'weather_code,temperature_2m_max,sunrise,sunset,precipitation_hours',
+                'daily'     => 'weather_code,temperature_2m_max,sunrise,sunset,precipitation_hours,temperature_2m_max,temperature_2m_min',
                 'timezone'  => 'auto',
             ]);
             

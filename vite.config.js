@@ -14,6 +14,11 @@ export default defineConfig({
         }),
         vue(),
     ],
+    resolve: {
+        alias: {
+            vue: 'vue/dist/vue.esm-bundler.js',
+        }
+    },
     server: {
         watch: {
             usePolling: true // Needed if using wsl

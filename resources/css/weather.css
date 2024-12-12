@@ -1,0 +1,71 @@
+body{
+    background-color: #191B1F;
+    min-height:100vh;
+    align-content: center;
+}
+
+.desktop-frame{
+    gap: 20px;
+    padding: 15px;
+}
+
+#weather{
+    display: flex;
+    flex-direction: column;
+    gap: 49px;
+}
+
+#main-weather-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 46px;;
+}
+
+#sub-weather-section > p > i{
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-weather-img{
+    width: 85%;
+    max-width: 316px;
+}
+
+#main-temp{
+    font-size: 6rem;
+    line-height: 36px;
+    margin-top: -30px;
+}
+
+#main-current-day{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+}
+
+#main-current-day > *{
+    padding: 1vw 5px;
+    font-size: 1.6rem;
+    margin-bottom: 0;
+}
+
+.frame-style{
+    color: white;
+    background: linear-gradient(-26deg, rgba(255, 255, 255, 0.1) 10%, rgba(153, 153, 153, 0.1) 80%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    padding: 47px 40px;
+}
+
+.sub-info{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: baseline;
+}
