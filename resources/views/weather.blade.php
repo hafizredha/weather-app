@@ -6,18 +6,22 @@
     <title>Vue.js Weather App</title>
 </head>
 <body>
-    <div class="container">
-        <div id="app">
+    <div id="app" class="container">
+        <div class="row justify-content-center gap-3">
+            <div id="weather" class="frame-style col-lg-4">
+                <weather></weather>
+            </div>
             
-        </div>
-
-        <div id="air">
+    
+            <div id="air" class="frame-style col-lg-7">
+                <air-quality></air-quality>
+            </div>
 
         </div>
     </div>
 
     <!-- Load compiled JavaScript -->
     @vite('resources/js/weather.js')
-    {{-- @vite('resources/js/air-quality.js') --}}
+    <script src="https://kit.fontawesome.com/9c456af13d.js" crossorigin="anonymous"></script>
 </body>
 </html>
