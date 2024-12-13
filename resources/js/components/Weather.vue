@@ -1,5 +1,6 @@
 <script>
     import { useWeatherStore } from '../stores/weatherStores';
+    import { useAirQualityStore } from '../stores/airQualityStores';
     export default{
         name: 'Weather',
         data() {
@@ -48,7 +49,10 @@
         setup() {
             const weatherStore = useWeatherStore();
             weatherStore.fetchWeather();
-            return { weatherStore };
+
+            const airQualityStore = useAirQualityStore();
+            airQualityStore.fetchAirQuality();
+            return { weatherStore, airQualityStore };
         },
         methods: {
             getWeatherImage(code, is_day){
@@ -94,6 +98,16 @@
         <p><i class="fa-solid fa-cloud"></i> {{ getWeatherDesc(weatherStore.weather.current.weather_code) }}</p>
         <p><i class="fa-solid fa-temperature-low"></i> Min Temperature - {{  Math.round(weatherStore.weather.daily.temperature_2m_min[0]) }}<sup>°C</sup></p>
         <p><i class="fa-solid fa-temperature-high"></i> Max Temperature - {{ Math.round(weatherStore.weather.daily.temperature_2m_max[0]) }}<sup>°C</sup></p>
+    </section>
+    <section id="" class="d-inline-flex justify-content-around" v-if="airQualityStore.air_quality?.data">
+        <span>
+            <p>{{ weatherStore.weather.current.relative_humidity_2m }}%</p>
+            <p>Humidity</p>
+        </span>
+        <span>
+            <p>{{ weatherStore.weather.current.wind_speed_10m }}km/h</p>
+            <p>Wind Speed</p>
+        </span>
     </section>
     <section v-else>
         <p>Loading...</p>
