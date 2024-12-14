@@ -99,15 +99,21 @@
         <p><i class="fa-solid fa-temperature-low"></i> Min Temperature - {{  Math.round(weatherStore.weather.daily.temperature_2m_min[0]) }}<sup>°C</sup></p>
         <p><i class="fa-solid fa-temperature-high"></i> Max Temperature - {{ Math.round(weatherStore.weather.daily.temperature_2m_max[0]) }}<sup>°C</sup></p>
     </section>
-    <section id="" class="d-inline-flex justify-content-around" v-if="airQualityStore.air_quality?.data">
-        <span>
-            <p>{{ weatherStore.weather.current.relative_humidity_2m }}%</p>
-            <p>Humidity</p>
-        </span>
-        <span>
-            <p>{{ weatherStore.weather.current.wind_speed_10m }}km/h</p>
-            <p>Wind Speed</p>
-        </span>
+    <section id="bottom-weather-section" class="d-flex justify-content-around" v-if="weatherStore.weather?.current">
+        <div class="d-inline-flex align-items-center gap-2 bottom-weather-info"> 
+            <span><img :src="'/storage/water-waves.png'"></img></span> 
+            <span>
+                <p>{{ weatherStore.weather.current.relative_humidity_2m }}%</p>
+                <p>Humidity</p>
+            </span>
+        </div>
+        <div class="d-inline-flex align-items-center gap-2 bottom-weather-info">
+            <span><img :src="'/storage/wind.png'"></img></span>   
+            <span>
+                <p>{{ weatherStore.weather.current.wind_speed_10m }}km/h</p>
+                <p>Wind Speed</p>
+            </span>
+        </div>
     </section>
     <section v-else>
         <p>Loading...</p>

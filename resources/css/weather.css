@@ -12,7 +12,7 @@ body{
 #weather{
     display: flex;
     flex-direction: column;
-    gap: 49px;
+    gap: 39px;
 }
 
 #main-weather-section{
@@ -21,14 +21,6 @@ body{
     justify-content: center;
     align-items: center;
     gap: 46px;;
-}
-
-#sub-weather-section > p > i{
-    width: 24px;
-    height: 24px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #main-weather-img{
@@ -53,6 +45,36 @@ body{
     padding: 1vw 5px;
     font-size: 1.6rem;
     margin-bottom: 0;
+}
+
+#sub-weather-section > p > i{
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bottom-weather-section{
+    background-color: rgb(37, 34, 34, 0.65);
+    border: 1px solid rgb(0,0,0, 0.1);
+    box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 25%);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.bottom-weather-info > span > img{
+    width: 40px;
+}
+
+.bottom-weather-info > span > p{
+    margin: 0px;
+    font-size: 1rem;
+    line-height: 20px;
+}
+
+.bottom-weather-info > span >p:first-child{
+    font-size: 1.3rem;
 }
 
 .frame-style{
