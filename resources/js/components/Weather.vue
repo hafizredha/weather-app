@@ -1,64 +1,32 @@
 <script>
     import { useWeatherStore } from '../stores/weatherStores';
     import { useAirQualityStore } from '../stores/airQualityStores';
+    import { computed } from 'vue';
     export default{
         name: 'Weather',
         data() {
             return {
                 city: 'London', // You can make this dynamic
-                weatherImages: {
-                    day: {
-                        0: '/storage/clear-day.png',
-                        1: '/storage/cloudy.png',
-                        2: '/storage/cloudy.png',
-                        3: '/storage/cloudy.png',
-                        45: '/storage/cloudy-windy.png',
-                        48: '/storage/cloudy-windy.png',
-                        51: '/storage/rainy.png',
-                        53: '/storage/rainy.png',
-                        55: '/storage/rainy.png',
-                        61: '/storage/rainy-day.png',
-                        63: '/storage/rainy-day.png',
-                        65: '/storage/rainy-day.png',
-                        80: '/storage/rainy-day.png',
-                        81: '/storage/rainy-day.png',
-                        82: '/storage/rainy-day.png',
-                        95: '/storage/thunderstorm.png',
-                    },
-                    night: {
-                        0: '/storage/clear-night.png',
-                        1: '/storage/cloudy.png',
-                        2: '/storage/cloudy.png',
-                        3: '/storage/cloudy.png',
-                        45: '/storage/cloudy-windy.png',
-                        48: '/storage/cloudy-windy.png',
-                        51: '/storage/rainy.png',
-                        53: '/storage/rainy.png',
-                        55: '/storage/rainy.png',
-                        61: '/storage/rainy-night.png',
-                        63: '/storage/rainy-night.png',
-                        65: '/storage/rainy-night.png',
-                        80: '/storage/rainy-night.png',
-                        81: '/storage/rainy-night.png',
-                        82: '/storage/rainy-night.png',
-                        95: '/storage/thunderstorm.png',
-                    },
-                },
             };
         },
         setup() {
             const weatherStore = useWeatherStore();
             weatherStore.fetchWeather();
 
+            // Computed property for weather image
+            const weatherImage = computed(() => {
+                const weatherCode = weatherStore.weather?.current?.weather_code;
+                const isDay = weatherStore.weather?.current?.is_day;
+
+                // Call store method to get the correct image
+                return weatherStore.getWeatherImage(weatherCode, isDay);
+            });
+
             const airQualityStore = useAirQualityStore();
             airQualityStore.fetchAirQuality();
-            return { weatherStore, airQualityStore };
+            return { weatherStore, weatherImage, airQualityStore };
         },
         methods: {
-            getWeatherImage(code, is_day){
-                const timeOfDay = is_day?'day':'night';
-                return this.weatherImages[timeOfDay][code];
-            },
             getWeatherDesc(code){
                 const weatherDesc = {
                     0: 'Clear Sky',
@@ -90,7 +58,7 @@
 
 <template>
     <section id="main-weather-section" v-if="weatherStore.weather?.current">
-        <img id="main-weather-img" :src="getWeatherImage(weatherStore.weather.current.weather_code, weatherStore.weather.current.is_day)" alt="Weather condition image"></img>
+        <img id="main-weather-img" :src="weatherImage" alt="Weather condition image"></img>
         <h1 id="main-temp">{{ Math.round(weatherStore.weather.current.temperature_2m) }}<sup>°C</sup></h1>
         <span id="main-current-day"><p>Kuala Lumpur</p><p>{{ getTodayDay() }}</p></span>
     </section>
