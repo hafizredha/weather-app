@@ -63,6 +63,18 @@ body{
     padding: 15px;
 }
 
+#weather-tab > .nav-item > .nav-link.active{
+    background-color: transparent !important;
+    color: #FFFF;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-underline-offset: 3px;
+}
+
+#weather-tab > .nav-item > .nav-link{
+    color: rgb(255,255,255, 0.5);
+}
+
 .bottom-weather-info > span > img{
     width: 40px;
 }
