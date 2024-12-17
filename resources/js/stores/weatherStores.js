@@ -3,44 +3,7 @@ import { defineStore } from "pinia";
 export const useWeatherStore = defineStore('weather', {
     state: () => ({
         weather: {},
-        weatherImages:{
-            day: {
-                0: '/storage/clear-day.webp',
-                1: '/storage/cloudy.webp',
-                2: '/storage/cloudy.webp',
-                3: '/storage/cloudy.webp',
-                45: '/storage/cloudy-windy.webp',
-                48: '/storage/cloudy-windy.webp',
-                51: '/storage/rainy.webp',
-                53: '/storage/rainy.webp',
-                55: '/storage/rainy.webp',
-                61: '/storage/rainy-day.webp',
-                63: '/storage/rainy-day.webp',
-                65: '/storage/rainy-day.webp',
-                80: '/storage/rainy-day.webp',
-                81: '/storage/rainy-day.webp',
-                82: '/storage/rainy-day.webp',
-                95: '/storage/thunderstorm.webp',
-            },
-            night: {
-                0: '/storage/clear-night.webp',
-                1: '/storage/cloudy.webp',
-                2: '/storage/cloudy.webp',
-                3: '/storage/cloudy.webp',
-                45: '/storage/cloudy-windy.webp',
-                48: '/storage/cloudy-windy.webp',
-                51: '/storage/rainy.webp',
-                53: '/storage/rainy.webp',
-                55: '/storage/rainy.webp',
-                61: '/storage/rainy-night.webp',
-                63: '/storage/rainy-night.webp',
-                65: '/storage/rainy-night.webp',
-                80: '/storage/rainy-night.webp',
-                81: '/storage/rainy-night.webp',
-                82: '/storage/rainy-night.webp',
-                95: '/storage/thunderstorm.webp',
-            },
-        }
+        weatherImages:{}
     }),
     actions: {
         async fetchWeather() {
@@ -53,11 +16,20 @@ export const useWeatherStore = defineStore('weather', {
                 console.error('Error fetching weather:', error);
             }
         },
-    },
-    getters:{
-        getWeatherImage: (state) => (code, is_day) => {
+        getWeatherImage(code, is_day){
             const timeOfDay = is_day?'day':'night';
-            return state.weatherImages[timeOfDay][code];
-        },
-    }
+            switch(code){
+                case 0: case 1:
+                    return timeOfDay == 'day'?'/storage/clear-day.webp':'/storage/clear-night.webp';
+                case 2: case 3:
+                    return '/storage/cloudy.webp';
+                case 45: case 48:
+                    return '/storage/cloudy-windy.webp';
+                case 51: case 53: case 55: case 61: case 63: case 65: case 80: case 81: case 82:
+                    return timeOfDay == 'day'?'/storage/rainy-day.webp':'/storage/rainy-night.webp';
+                case 95: case 96: case 99:
+                    return '/storage/thunderstorm.webp';
+            }
+        }
+    },
 })

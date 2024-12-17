@@ -42,6 +42,8 @@
                     81: 'Moderate Rain Shower',
                     82: 'Heavy Rain Shower',
                     95: 'Thunderstorm',
+                    96: 'Thunderstorm (Hail)',
+                    99: 'Thunderstorm (Heavy Hail)'
                 }
 
                 return weatherDesc[code];
@@ -67,7 +69,7 @@
         <p><i class="fa-solid fa-temperature-low"></i> Min Temperature - {{  Math.round(weatherStore.weather.daily.temperature_2m_min[0]) }}<sup>°C</sup></p>
         <p><i class="fa-solid fa-temperature-high"></i> Max Temperature - {{ Math.round(weatherStore.weather.daily.temperature_2m_max[0]) }}<sup>°C</sup></p>
     </section>
-    <section id="bottom-weather-section" class="d-flex justify-content-around" v-if="weatherStore.weather?.current">
+    <section id="bottom-weather-section" class="d-flex justify-content-around cards-style" v-if="weatherStore.weather?.current">
         <div class="d-inline-flex align-items-center gap-2 bottom-weather-info"> 
             <span><img :src="'/storage/water-waves.png'"></img></span> 
             <span>

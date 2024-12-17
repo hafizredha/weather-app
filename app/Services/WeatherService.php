@@ -19,7 +19,7 @@ class WeatherService{
                 'latitude'    => $defaultLalitude,
                 'longitude' => $defaultLongitude,
                 'current'   => 'temperature_2m,is_day,weather_code,relative_humidity_2m,wind_speed_10m',
-                'hourly'    => 'temperature_2m,precipitation_probability',
+                'hourly'    => 'temperature_2m,precipitation_probability,weather_code',
                 'daily'     => 'weather_code,temperature_2m_max,sunrise,sunset,precipitation_hours,temperature_2m_max,temperature_2m_min',
                 'timezone'  => 'auto',
             ]);
