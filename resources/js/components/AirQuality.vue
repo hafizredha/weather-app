@@ -1,4 +1,5 @@
 <script>
+    import $ from 'jquery';
     import { useWeatherStore } from '../stores/weatherStores';
     import { useAirQualityStore } from '../stores/airQualityStores';
     export default{
@@ -16,27 +17,27 @@
                 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 console.log()
                 return daysOfWeek[date.getDay()];
+            },
+            hideTab(){
+                $('#pills-today').addClass('hide-tab');
+                $('#pills-week').removeClass('hide-tab');
+            },
+            showTab(){
+                $('#pills-week').addClass('hide-tab');
+                $('#pills-today').removeClass('hide-tab');
             }
-        }
+        },
     }
-    // $(document).ready(function(){
-    //     if ($('#pills-today').hasClass("show")){
-    //         $('#pills-week').css('display','none !important');
-    //     }
-    //     if ($('#pills-week').hasClass("show")){
-    //         $('#pills-today').css('display','none !important');
-    //     }
-    // });
 </script>
 
 <template>
     <div v-if="weatherStore.weather?.daily">
         <ul class="nav nav-pills mb-3" id="weather-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active ps-0" id="pills-today-tab" data-bs-toggle="pill" data-bs-target="#pills-today" type="button" role="tab" aria-controls="pills-today" aria-selected="true">Today</button>
+                <button class="nav-link active ps-0" id="pills-today-tab" @click="showTab()" data-bs-toggle="pill" data-bs-target="#pills-today" type="button" role="tab" aria-controls="pills-today" aria-selected="true">Today</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-week-tab" data-bs-toggle="pill" data-bs-target="#pills-week" type="button" role="tab" aria-controls="pills-week" aria-selected="false">Week</button>
+                <button class="nav-link" id="pills-week-tab" @click="hideTab()" data-bs-toggle="pill" data-bs-target="#pills-week" type="button" role="tab" aria-controls="pills-week" aria-selected="false">Week</button>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">

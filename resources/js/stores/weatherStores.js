@@ -24,7 +24,7 @@ export const useWeatherStore = defineStore('weather', {
                 case 2: case 3:
                     return '/storage/cloudy.webp';
                 case 45: case 48:
-                    return '/storage/cloudy-windy.webp';
+                    return '/storage/cloud-windy.webp';
                 case 51: case 53: case 55: case 61: case 63: case 65: case 80: case 81: case 82:
                     return timeOfDay == 'day'?'/storage/rainy-day.webp':'/storage/rainy-night.webp';
                 case 95: case 96: case 99:
