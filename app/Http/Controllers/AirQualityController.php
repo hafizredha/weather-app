@@ -16,6 +16,7 @@ class AirQualityController extends Controller
     public function airQualityInfo(){
         $city = 'Kuala Lumpur';
         $airQualityData = $this->airQualityService->getAirQuality($city);
+        $airQualityData['uv_index'] = $this->airQualityService->getUvIndex($city);
 
         return $airQualityData;
     }
