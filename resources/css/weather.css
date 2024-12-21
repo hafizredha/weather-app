@@ -110,3 +110,10 @@ body{
 .hide-tab{
     display: none !important;
 }
+
+.good-level{ color: #009966;}
+.moderate-level{ color: #ffde33;}
+.unhealthy-sensitive-level{ color: #ff9933}
+.unhealthy-level{ color: #cc0033;}
+.very-unhealthy-level{ color: #660099;}
+.hazardous-level{ color: #7e0023;}
