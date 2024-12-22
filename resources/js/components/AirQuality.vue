@@ -3,11 +3,15 @@
     import { useWeatherStore } from '../stores/weatherStores';
     import { useAirQualityStore } from '../stores/airQualityStores';
     import { computed } from 'vue';
+    import LineChart from './LineChart.vue';
     export default{
         name: 'AirQuality',
         aqi: '',
         pressure: '',
         uvi: '',
+        components: {
+            LineChart,
+        },
         setup(){
             const weatherStore = useWeatherStore();
             const airQualityStore = useAirQualityStore();
@@ -23,7 +27,6 @@
             getDayFromDate(dayDate){
                 const date = new Date(dayDate);
                 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-                console.log()
                 return daysOfWeek[date.getDay()];
             },
             hideTab(){
@@ -90,7 +93,7 @@
                         <p>UV Index</p>
                         <div class="d-flex justify-content-between align-items-end">
                             <div class="d-flex gap-2 flex-column justify-content-around">
-                                <h1>{{ uvi }}</h1>
+                                <h1>{{ uvi > 0?uvi:1 }}</h1>
                                 <p class="good-level" v-if="uvi <= 2">Low</p>
                                 <p class="moderate-level" v-if="uvi > 2 && uvi <= 5">Moderate</p>
                                 <p class="unhealthy-sensitive-level" v-if="uvi > 5 && uvi <= 7">High</p>
@@ -120,7 +123,9 @@
 
         <div class="row gx-3">
             <div class="col-lg-8">
-                <div class="cards-style"></div>
+                <div class="cards-style">
+                    <LineChart />
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="cards-style"></div>
