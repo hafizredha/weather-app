@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/weather.css';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+import VueApexCharts from "vue3-apexcharts";
 import Weather from './components/Weather.vue'
 import AirQuality from './components/AirQuality.vue'
 
@@ -13,6 +14,8 @@ const app = createApp({
         AirQuality,
     },
 });
+
+app.use(VueApexCharts);
 
 // Register pinia for state management
 const pinia = createPinia();
