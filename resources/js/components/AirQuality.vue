@@ -71,7 +71,7 @@
         <div class="mb-5" v-if="airQualityStore.air_quality?.data">
             <p class="mb-5">Today's Overview</p>
             <div class="row gx-3">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-xs-6">
                     <div class="d-flex flex-column gap-2 cards-style px-3 py-2">
                         <p>Air Quality Index</p>
                         <div class="d-flex justify-content-between align-items-end">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-xs-6">
                     <div class="d-flex flex-column gap-2 cards-style px-3 py-2">
                         <p>UV Index</p>
                         <div class="d-flex justify-content-between align-items-end">
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-xs-6">
                     <div class="d-flex flex-column gap-2 cards-style px-3 py-2">
                         <p>Pressure (hPa)</p>
                         <div class="d-flex justify-content-between align-items-end">
@@ -128,11 +128,26 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="cards-style"></div>
+                <div class="d-flex flex-column gap-2 cards-style px-3 py-2 h-100">
+                    <p>Sunrise & Sunset</p>
+                    <div class="row align-items-center">
+                        <div class="col-lg-4">
+                            <img style="max-width: 48px;" :src="'/storage/sunrise.webp'" />
+                        </div>
+                        <div class="col-lg-8">
+                            Sunrise<br/>7:00AM
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-4">
+                            <img style="max-width: 48px;" :src="'/storage/sunset.webp'" />
+                        </div>
+                        <div class="col-lg-8">
+                            Sunset<br/>7:00PM
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        
-        {{ weatherStore.weather.current.temperature_2m }}
     </div>
 </template>
