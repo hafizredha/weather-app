@@ -4,6 +4,7 @@
     import { useAirQualityStore } from '../stores/airQualityStores';
     import { computed } from 'vue';
     import LineChart from './LineChart.vue';
+
     export default{
         name: 'AirQuality',
         aqi: '',
@@ -15,13 +16,18 @@
         setup(){
             const weatherStore = useWeatherStore();
             const airQualityStore = useAirQualityStore();
-            
+
+            // 
             const getWeatherImage = (code, is_day) => weatherStore.getWeatherImage(code, is_day);
+            const weatherTime = computed(() => weatherStore.weather?.hourly?.time || null);
+            const todayWeatherData = computed(() => weatherStore.getTimeToday(weatherStore.weather?.hourly));
+            
+            // const startOfDay = computed(() => { return weatherStore.getDatetimeRangeForToday(); });
             const aqi = computed(() => airQualityStore.air_quality?.data?.aqi || null);
             const pressure = computed(() => airQualityStore.air_quality?.data?.iaqi?.p?.v || null);
             const uvi = computed(() => Math.round(airQualityStore.air_quality?.uv_index?.current?.uv_index) || null);
 
-            return { weatherStore, getWeatherImage, airQualityStore, aqi, pressure, uvi };
+            return { weatherStore, getWeatherImage, airQualityStore, aqi, pressure, uvi, weatherTime, todayWeatherData };
         },
         methods:{
             getDayFromDate(dayDate){
@@ -43,7 +49,7 @@
 
 <template>
     <div v-if="weatherStore.weather?.daily">
-        <ul class="nav nav-pills mb-5" id="weather-tab" role="tablist">
+        <ul class="nav nav-pills mb-lg-4 mb-xxl-5" id="weather-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active ps-0" id="pills-today-tab" @click="showTab()" data-bs-toggle="pill" data-bs-target="#pills-today" type="button" role="tab" aria-controls="pills-today" aria-selected="true">Today</button>
             </li>
@@ -51,12 +57,12 @@
                 <button class="nav-link" id="pills-week-tab" @click="hideTab()" data-bs-toggle="pill" data-bs-target="#pills-week" type="button" role="tab" aria-controls="pills-week" aria-selected="false">Week</button>
             </li>
         </ul>
-        <div class="tab-content mb-5" id="pills-tabContent">
+        <div class="tab-content mb-lg-4 mb-xxl-5" id="pills-tabContent">
             <div class="tab-pane fade show active d-inline-flex gap-3 justify-content-between" id="pills-today" role="tabpanel" aria-labelledby="pills-today-tab">
-                <div v-for="(index, n) in 7" class="d-flex flex-column gap-2 align-items-center p-2 cards-style forecast-info">
-                    <!-- <p class="mb-0">{{ getDayFromDate(weatherStore.weather.hourly.time[n]) }}</p> -->
-                    <img style="width: 100%;max-width: 70px;" :src="getWeatherImage(weatherStore.weather.hourly.weather_code[n], 1)">
-                    <p class="mb-0">{{ Math.round(weatherStore.weather.hourly.temperature_2m[n]) }}<sup>°C</sup></p>
+                <div v-for="(value, n) in todayWeatherData.todayTime" class="d-flex flex-column gap-2 align-items-center p-2 cards-style forecast-info">
+                    <p class="mb-0">{{ value }}</p>
+                    <img style="width: 100%;max-width: 70px;" :src="getWeatherImage(todayWeatherData.todayWeatherCode[n], 1)">
+                    <p class="mb-0">{{ Math.round(todayWeatherData.todayTemp[n]) }}<sup>°C</sup></p>
                 </div>
             </div>
             <div class="tab-pane fade d-inline-flex gap-3 justify-content-between hide-tab" id="pills-week" role="tabpanel" aria-labelledby="pills-week-tab">
@@ -68,8 +74,8 @@
             </div>
         </div>
 
-        <div class="mb-5" v-if="airQualityStore.air_quality?.data">
-            <p class="mb-5">Today's Overview</p>
+        <div class="mb-lg-4 mb-xxl-5" v-if="airQualityStore.air_quality?.data">
+            <p class="mb-lg-4 mb-xxl-5">Today's Overview</p>
             <div class="row gx-3">
                 <div class="col-lg-4 col-xs-6">
                     <div class="d-flex flex-column gap-2 cards-style px-3 py-2">
@@ -135,7 +141,7 @@
                             <img style="max-width: 48px;" :src="'/storage/sunrise.webp'" />
                         </div>
                         <div class="col-lg-8">
-                            Sunrise<br/>7:00AM
+                            Sunrise<br/>{{ new Date(weatherStore.weather.daily.sunrise[0]).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) }}
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -143,7 +149,7 @@
                             <img style="max-width: 48px;" :src="'/storage/sunset.webp'" />
                         </div>
                         <div class="col-lg-8">
-                            Sunset<br/>7:00PM
+                            Sunset<br/>{{ new Date(weatherStore.weather.daily.sunset[0]).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) }}
                         </div>
                     </div>
                 </div>

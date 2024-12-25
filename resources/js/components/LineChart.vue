@@ -1,6 +1,7 @@
 <script>
     import { includes } from 'lodash';
 import { useWeatherStore } from '../stores/weatherStores';
+import { computed } from 'vue';
 
     export default{
         name: 'LineChart',
@@ -8,8 +9,10 @@ import { useWeatherStore } from '../stores/weatherStores';
             const weatherStore = useWeatherStore();
             const weatherTime = weatherStore.weather.hourly.time;
             const weatherPre = weatherStore.weather.hourly.precipitation_probability;
+
+            const startOfDay = computed(() => { return weatherStore.getDatetimeRangeForToday(); });
             
-            return { weatherStore, weatherTime, weatherPre };
+            return { weatherStore, weatherTime, weatherPre, startOfDay };
         },
         data() {
             return{
@@ -109,24 +112,10 @@ import { useWeatherStore } from '../stores/weatherStores';
             
         },
         methods: {
-            getDatetimeRangeForToday() {
-                const now = new Date();
-                const year = now.getFullYear();
-                const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-                const day = String(now.getDate()).padStart(2, '0');
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-
-                const startOfDay = `${year}-${month}-${day}T${hours}:${minutes}`;
-
-                return startOfDay;
-            },
             filterWeatherData() {
-                const startOfDay= this.getDatetimeRangeForToday();
-
                 // Filter weatherStore data for entries within today's range
                 const filteredData = this.weatherTime
-                    .filter((time) => time >= startOfDay)
+                    .filter((time) => time >= this.startOfDay)
                     .splice(0, 7);
 
                 // Change time format for chart label
