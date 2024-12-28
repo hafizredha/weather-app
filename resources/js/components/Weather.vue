@@ -2,8 +2,13 @@
     import { useWeatherStore } from '../stores/weatherStores';
     import { useAirQualityStore } from '../stores/airQualityStores';
     import { computed } from 'vue';
+    import CitySearch from './CitySearch.vue';
+
     export default{
         name: 'Weather',
+        components:{
+            CitySearch,
+        },
         data() {
             return {
                 city: 'London', // You can make this dynamic
@@ -60,6 +65,7 @@
 
 <template>
     <section id="main-weather-section" v-if="weatherStore.weather?.current">
+        <CitySearch />
         <img id="main-weather-img" :src="weatherImage" alt="Weather condition image"></img>
         <h1 id="main-temp">{{ Math.round(weatherStore.weather.current.temperature_2m) }}<sup>°C</sup></h1>
         <span id="main-current-day"><p>Kuala Lumpur</p><p>{{ getTodayDay() }}</p></span>
