@@ -9,12 +9,13 @@ class CityController extends Controller
 {
     public function search(Request $request){
             $query = $request->input('query');
-            $API_KEY  = env('WEATHER_API_TOKEN');
 
             try {
-                $response = Http::get('http://api.openweathermap.org/geo/1.0/direct?', [
-                    'q'     => $query,
-                    'appid' => $API_KEY,
+                $response = Http::get('https://geocoding-api.open-meteo.com/v1/search?', [
+                    'name'  => $query,
+                    'count' => '5',
+                    'language'  => 'en',
+                    'format' => 'json',
                 ]);
                 
                 return $response->json();
