@@ -12,7 +12,8 @@
                 if (this.query.length > 2) {
                     try{
                         const response = await fetch(`/api/cities?query=${this.query}`);
-                        this.cities = await response.json();
+                        let data = await response.json();
+                        this.cities = data.results;
                         console.log(this.cities);
                     }catch(error){
                         console.error('Error fetching cities:', error);
@@ -21,7 +22,7 @@
                 } else {
                     this.cities = [];
                 }
-            }, 300 ),
+            }, 150),
             selectCity(city) {
                 this.query = `${city.name}, ${city.country}`;
                 this.cities = [];
@@ -41,19 +42,42 @@
 </script>
 
 <template>
-    <input 
+    <!-- <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <input 
+                type="text" 
+                v-model="query" 
+                @input="fetchSuggestions" 
+                placeholder="Search for a city"
+            />
+        </a>
+        <ul class="dropdown-menu">
+            <li 
+                v-if="cities.length > 0"
+                v-for="(city, index) in cities" 
+                :key="index" 
+                @click="selectCity(city)"
+            >
+                <a class="dropdown-item"> {{ city.name }}, {{ city.country }}</a>
+            </li>
+        </ul>
+    </div> -->
+    <div id="city-search">
+        <input  
         type="text" 
         v-model="query" 
         @input="fetchSuggestions" 
         placeholder="Search for a city"
-    />
-     <ul v-if="cities.length > 0">
-        <li 
-            v-for="(city, index) in cities" 
-            :key="index" 
-            @click="selectCity(city)"
-        >
-            {{ city.name }}, {{ city.country }}
-        </li>
-    </ul>
+        />
+        <ul id="cities-result" v-if="cities.length > 0">
+            <li 
+                v-for="(city, index) in cities" 
+                :key="index" 
+                @click="selectCity(city)"
+            >
+                {{ city.name }}, {{ city.country }}
+            </li>
+        </ul>
+    </div>
+    
 </template>
