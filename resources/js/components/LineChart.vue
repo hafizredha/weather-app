@@ -7,8 +7,8 @@ import { computed } from 'vue';
         name: 'LineChart',
         setup(){
             const weatherStore = useWeatherStore();
-            const weatherTime = weatherStore.weather.hourly.time;
-            const weatherPre = weatherStore.weather.hourly.precipitation_probability;
+            const weatherTime = computed(() => { return weatherStore.weather.hourly.time; });
+            const weatherPre = computed(() => { return weatherStore.weather.hourly.precipitation_probability; });
 
             const startOfDay = computed(() => { return weatherStore.getDatetimeRangeForToday(); });
             
@@ -110,6 +110,10 @@ import { computed } from 'vue';
                 }
             }
             
+        },
+        watch: {
+            // Watch for changes in weatherStore data and call filterWeatherData
+            weatherTime: 'filterWeatherData',
         },
         methods: {
             filterWeatherData() {

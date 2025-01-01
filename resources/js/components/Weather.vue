@@ -11,7 +11,7 @@
         },
         data() {
             return {
-                city: 'London', // You can make this dynamic
+                selectedCity: 'Kuala Lumpur',
             };
         },
         setup() {
@@ -58,17 +58,20 @@
                 let day = date.getDay();
                 const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
                 return weekday[day];
-            }
+            },
+            updateSelectedCity(cityName) {
+                this.selectedCity = cityName; // Update the selected city's name
+            },
         }
     };
 </script>
 
 <template>
     <section id="main-weather-section" v-if="weatherStore.weather?.current">
-        <CitySearch />
+        <CitySearch @city-selected="updateSelectedCity" />
         <img id="main-weather-img" :src="weatherImage" alt="Weather condition image"></img>
         <h1 id="main-temp">{{ Math.round(weatherStore.weather.current.temperature_2m) }}<sup>°C</sup></h1>
-        <span id="main-current-day"><p>Kuala Lumpur</p><p>{{ getTodayDay() }}</p></span>
+        <span id="main-current-day"><p>{{ this.selectedCity }}</p><p>{{ getTodayDay() }}</p></span>
     </section>
     <section id="sub-weather-section" v-if="weatherStore.weather?.current">
         <p><i class="fa-solid fa-cloud"></i> {{ getWeatherDesc(weatherStore.weather.current.weather_code) }}</p>

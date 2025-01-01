@@ -7,9 +7,14 @@ export const useWeatherStore = defineStore('weather', {
         weatherHourly: {}
     }),
     actions: {
-        async fetchWeather() {
+        async fetchWeather(latitude = null, longitude = null) {
             try {
-                const response = await fetch('/api/weather/');
+                const params = new URLSearchParams();
+                if (latitude !== null && longitude !== null) {
+                    params.append('latitude', latitude);
+                    params.append('longitude', longitude);
+                }
+                const response = await fetch(`/api/weather?${params.toString()}`);
                 this.weather = await response.json();
                 console.log(this.weather);
             } catch (error) {

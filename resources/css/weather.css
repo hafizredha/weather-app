@@ -12,7 +12,7 @@ body{
 #weather{
     display: flex;
     flex-direction: column;
-    gap: 39px;
+    gap: 32px;
 }
 
 #main-weather-section{
@@ -20,7 +20,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 24px;;
+    gap: 32px;;
 }
 
 #main-weather-img{
@@ -77,24 +77,35 @@ body{
     padding: 0px 16px 0px 16px;
 }
 
+#city-search > i{
+    position: absolute;
+    padding: 16px;
+    color: #7E7C7C;
+}
+
 #city-search > input{
     background-color: #C2D4D3;
     color: #7E7C7C;
+    border: none;
     border-radius: 20px;
     height: 48px;
-    padding: 0px 16px 0px 16px;
+    padding: 0px 16px 0px 40px;
     width: 100%;
+    transition: border-radius 0.3s ease 0.3s;
 }
 
 #city-search > input:focus{
-    border-radius: 20px 20px 0px 0px;
     border: none !important;
     outline: none !important;
 }
 
+.input-dropdown{
+    transition: border-radius ease !important;
+    border-radius: 20px 20px 0px 0px !important;
+}
+
 #cities-result{
     position: absolute;
-    /* width: 80%; */
     inset: 0px auto auto 0px;
     padding: 0px 16px 0px 16px;
     margin-inline: auto;
@@ -165,3 +176,19 @@ body{
 .unhealthy-level{ color: #cc0033;}
 .very-unhealthy-level{ color: #660099;}
 .hazardous-level{ color: #7e0023;}
+
+/* Animation for entering and leaving */
+.dropdown-enter-active, .dropdown-leave-active {
+    transition: max-height 0.3s ease;
+    overflow: hidden;
+}
+
+.dropdown-enter-from, .dropdown-leave-to {
+    max-height: 0;
+}
+
+.dropdown-enter-to, .dropdown-leave-from {
+    max-height: 200px;
+}
+
+
