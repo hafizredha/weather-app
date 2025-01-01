@@ -13,10 +13,17 @@ class AirQualityController extends Controller
         $this->airQualityService = $airQualityService;
     }
 
-    public function airQualityInfo(){
-        $city = 'Kuala Lumpur';
-        $airQualityData = $this->airQualityService->getAirQuality($city);
-        $airQualityData['uv_index'] = $this->airQualityService->getUvIndex($city);
+    public function airQualityInfo(Request $request){
+        $lat = $request->input('latitude');
+        $long = $request->input('longitude');
+        
+        if (!isset($lat) && !isset($long)) {
+            $lat = '3.085';
+            $long = '101.532';
+        }
+        
+        $airQualityData = $this->airQualityService->getAirQuality($lat, $long);
+        $airQualityData['uv_index'] = $this->airQualityService->getUvIndex($lat, $long);
 
         return $airQualityData;
     }

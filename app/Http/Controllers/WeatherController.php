@@ -13,10 +13,16 @@ class WeatherController extends Controller
         $this->weatherService = $weatherService;
     }
 
-    public function weatherInfo(){
+    public function weatherInfo(Request $request){
         try {
-            $cityId = 1733046;
-            $weatherData = $this->weatherService->getWeather($cityId);
+            $latitude = $request->input('latitude');
+            $longitude = $request->input('longitude');
+            
+            if($latitude && $longitude){
+                $weatherData = $this->weatherService->getWeather($latitude, $longitude);
+            }else{
+                $weatherData = $this->weatherService->getWeather();
+            }
 
             return $weatherData;
         } catch (\Exception $e) {

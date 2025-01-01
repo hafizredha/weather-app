@@ -24,7 +24,7 @@
             
             // const startOfDay = computed(() => { return weatherStore.getDatetimeRangeForToday(); });
             const aqi = computed(() => airQualityStore.air_quality?.data?.aqi || null);
-            const pressure = computed(() => airQualityStore.air_quality?.data?.iaqi?.p?.v || null);
+            const pressure = computed(() => airQualityStore.air_quality?.data?.iaqi?.p?.v || 'N/A');
             const uvi = computed(() => Math.round(airQualityStore.air_quality?.uv_index?.current?.uv_index) || null);
 
             return { weatherStore, getWeatherImage, airQualityStore, aqi, pressure, uvi, weatherTime, todayWeatherData };
@@ -117,8 +117,9 @@
                             <div class="d-flex gap-2 flex-column justify-content-around">
                                 <h1>{{ pressure }}</h1>
                                 <p class="moderate-level" v-if="pressure <= 1009">Low</p>
-                                <p class="good-level" v-if="pressure > 1009 && pressure <= 1022">Normal</p>
-                                <p class="unhealthy-level" v-if="pressure > 1022">High</p>
+                                <p class="good-level" v-else-if="pressure > 1009 && pressure <= 1022">Normal</p>
+                                <p class="unhealthy-level" v-else-if="pressure > 1022">High</p>
+                                <p v-else>N/A</p>
                             </div>
                             <img style="width: 100%; max-width: 60px; max-height: 60px;" :src="'/storage/barometer.png'">
                         </div>

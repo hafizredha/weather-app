@@ -10,9 +10,9 @@ class AirQualityService{
         $this->apiKey = env('AQI_API_TOKEN');
     }
 
-    public function getAirQuality($city){
+    public function getAirQuality($latitude, $longitude){
         try {
-            $response = Http::get('https://api.waqi.info/feed/'.$city.'/', [
+            $response = Http::get('https://api.waqi.info/feed/geo:'.$latitude.';'.$longitude.'/', [
                 'token' => $this->apiKey,
             ]);
 
@@ -22,13 +22,11 @@ class AirQualityService{
         }
     }
 
-    public function getUvIndex($city){
+    public function getUvIndex($latitude, $longitude){
         try{
-            $lalitude = "3.1412";
-            $longitude = "101.6865";
             $apiUrl = "https://air-quality-api.open-meteo.com/v1/air-quality";
             $response = Http::get($apiUrl, [
-                'latitude' => $lalitude,
+                'latitude' => $latitude,
                 'longitude' => $longitude,
                 'current' => 'european_aqi,us_aqi,uv_index'
             ]);
