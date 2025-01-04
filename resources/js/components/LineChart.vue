@@ -42,10 +42,12 @@ import { computed } from 'vue';
                         text: 'Precipitation Probability',
                         align: 'left',
                         offsetX: 10,
-                        offsetY: 10,
+                        offsetY: 20,
                         style:{
                             color: '#FFFFFF',
                             fontWeight: '400',
+                            fontSize: '1rem',
+                            fontFamily:  'Plus Jakarta Sans',
                         }
                     },
                     labels: '',
@@ -146,5 +148,5 @@ import { computed } from 'vue';
 </script>
 
 <template>
-    <apexchart height="165" :options="chartOptions" :series="series"></apexchart>
+    <apexchart height="177" :options="chartOptions" :series="series"></apexchart>
 </template>

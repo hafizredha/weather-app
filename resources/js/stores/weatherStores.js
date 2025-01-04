@@ -16,7 +16,6 @@ export const useWeatherStore = defineStore('weather', {
                 }
                 const response = await fetch(`/api/weather?${params.toString()}`);
                 this.weather = await response.json();
-                console.log(this.weather);
             } catch (error) {
                 console.error('Error fetching weather:', error);
             }

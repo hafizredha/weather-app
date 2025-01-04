@@ -67,7 +67,7 @@
 </script>
 
 <template>
-    <section id="main-weather-section" v-if="weatherStore.weather?.current">
+    <section id="main-weather-section" class="gap-6" v-if="weatherStore.weather?.current">
         <CitySearch @city-selected="updateSelectedCity" />
         <img id="main-weather-img" :src="weatherImage" alt="Weather condition image"></img>
         <h1 id="main-temp">{{ Math.round(weatherStore.weather.current.temperature_2m) }}<sup>°C</sup></h1>
@@ -79,14 +79,14 @@
         <p><i class="fa-solid fa-temperature-high"></i> Max Temperature - {{ Math.round(weatherStore.weather.daily.temperature_2m_max[0]) }}<sup>°C</sup></p>
     </section>
     <section id="bottom-weather-section" class="d-flex justify-content-around cards-style" v-if="weatherStore.weather?.current">
-        <div class="d-inline-flex align-items-center gap-2 bottom-weather-info"> 
+        <div class="d-inline-flex align-items-center justify-content-center flex-wrap text-sm-center text-xl-start gap-2 bottom-weather-info"> 
             <span><img :src="'/storage/water-waves.png'"></img></span> 
             <span>
                 <p>{{ weatherStore.weather.current.relative_humidity_2m }}%</p>
                 <p>Humidity</p>
             </span>
         </div>
-        <div class="d-inline-flex align-items-center gap-2 bottom-weather-info">
+        <div class="d-inline-flex align-items-center justify-content-center flex-wrap text-sm-center text-xl-start gap-2 bottom-weather-info">
             <span><img :src="'/storage/wind.png'"></img></span>   
             <span>
                 <p>{{ weatherStore.weather.current.wind_speed_10m }}km/h</p>

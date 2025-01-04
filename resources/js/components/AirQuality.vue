@@ -49,7 +49,7 @@
 
 <template>
     <div v-if="weatherStore.weather?.daily">
-        <ul class="nav nav-pills mb-lg-4 mb-xxl-5" id="weather-tab" role="tablist">
+        <ul class="nav nav-pills mb-4 mb-lg-5 mb-xxl-5" id="weather-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active ps-0" id="pills-today-tab" @click="showTab()" data-bs-toggle="pill" data-bs-target="#pills-today" type="button" role="tab" aria-controls="pills-today" aria-selected="true">Today</button>
             </li>
@@ -57,7 +57,7 @@
                 <button class="nav-link" id="pills-week-tab" @click="hideTab()" data-bs-toggle="pill" data-bs-target="#pills-week" type="button" role="tab" aria-controls="pills-week" aria-selected="false">Week</button>
             </li>
         </ul>
-        <div class="tab-content mb-lg-4 mb-xxl-5" id="pills-tabContent">
+        <div class="tab-content mb-4 mb-lg-5 mb-xxl-5" id="pills-tabContent">
             <div class="tab-pane fade show active d-inline-flex gap-3 justify-content-between" id="pills-today" role="tabpanel" aria-labelledby="pills-today-tab">
                 <div v-for="(value, n) in todayWeatherData.todayTime" class="d-flex flex-column gap-2 align-items-center p-2 cards-style forecast-info">
                     <p class="mb-0">{{ value }}</p>
@@ -74,11 +74,11 @@
             </div>
         </div>
 
-        <div class="mb-lg-4 mb-xxl-5" v-if="airQualityStore.air_quality?.data">
-            <p class="mb-lg-4 mb-xxl-5">Today's Overview</p>
+        <div class="mb-4 mb-xxl-5" v-if="airQualityStore.air_quality?.data">
+            <p id="today-title" class="mb-4 mb-xxl-5">Today's Overview</p>
             <div class="row gx-3">
-                <div class="col-lg-4 col-xs-6">
-                    <div class="d-flex flex-column gap-2 cards-style px-3 py-2">
+                <div class="col-md-4 col-xs-6 mb-3">
+                    <div class="d-flex flex-column gap-3 cards-style px-3 py-3">
                         <p>Air Quality Index</p>
                         <div class="d-flex justify-content-between align-items-end">
                             <div class="d-flex gap-2 flex-column justify-content-around">
@@ -94,8 +94,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-xs-6">
-                    <div class="d-flex flex-column gap-2 cards-style px-3 py-2">
+                <div class="col-md-4 col-xs-6">
+                    <div class="d-flex flex-column gap-3 cards-style px-3 py-3">
                         <p>UV Index</p>
                         <div class="d-flex justify-content-between align-items-end">
                             <div class="d-flex gap-2 flex-column justify-content-around">
@@ -110,8 +110,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-xs-6">
-                    <div class="d-flex flex-column gap-2 cards-style px-3 py-2">
+                <div class="col-md-4 col-xs-6">
+                    <div class="d-flex flex-column gap-3 cards-style px-3 py-3">
                         <p>Pressure (hPa)</p>
                         <div class="d-flex justify-content-between align-items-end">
                             <div class="d-flex gap-2 flex-column justify-content-around">
@@ -129,27 +129,27 @@
         </div>
 
         <div class="row gx-3">
-            <div class="col-lg-8">
+            <div class="col-md-8">
                 <div class="cards-style">
                     <LineChart />
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="d-flex flex-column gap-2 cards-style px-3 py-2 h-100">
+            <div class="col-md-4">
+                <div class="d-flex flex-column gap-2 cards-style px-3 py-3 h-100">
                     <p>Sunrise & Sunset</p>
                     <div class="row align-items-center">
-                        <div class="col-lg-4">
+                        <div class="col-md-4">
                             <img style="max-width: 48px;" :src="'/storage/sunrise.webp'" />
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-md-8">
                             Sunrise<br/>{{ new Date(weatherStore.weather.daily.sunrise[0]).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) }}
                         </div>
                     </div>
                     <div class="row align-items-center">
-                        <div class="col-lg-4">
+                        <div class="col-md-4">
                             <img style="max-width: 48px;" :src="'/storage/sunset.webp'" />
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-md-8">
                             Sunset<br/>{{ new Date(weatherStore.weather.daily.sunset[0]).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) }}
                         </div>
                     </div>

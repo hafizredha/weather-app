@@ -39,10 +39,12 @@ import { useAirQualityStore } from '../stores/airQualityStores';
 
                 // Fetch weather based on city selected
                 const weatherStore = useWeatherStore();
-                await weatherStore.fetchWeather(city.latitude, city.longitude);
-
                 const airQualityStore = useAirQualityStore();
-                await airQualityStore.fetchAirQuality(city.latitude, city.longitude);
+
+                await Promise.all([
+                    weatherStore.fetchWeather(city.latitude, city.longitude),
+                    airQualityStore.fetchAirQuality(city.latitude, city.longitude),
+                ]);
 
                 // Emit the city name to the parent
                 this.$emit('city-selected', city.name);
