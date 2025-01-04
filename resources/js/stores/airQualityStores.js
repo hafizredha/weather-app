@@ -15,8 +15,6 @@ export const useAirQualityStore = defineStore('air_quality', {
                 const response = await fetch(`/api/air-quality?${params.toString()}`);
                 const data = await response.json();
                 this.air_quality = data;
-                console.log('air quality');
-                console.log(this.air_quality);
             } catch (error) {
                 console.error('Error fetching air quality data:', error);
             }

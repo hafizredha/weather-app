@@ -1,4 +1,10 @@
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('/fonts/PlusJakartaSans.ttf');
+}
+
 body{
+    font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
     background-color: #191B1F;
     min-height:100vh;
     align-content: center;
@@ -12,7 +18,7 @@ body{
 #weather{
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 2rem;
 }
 
 #main-weather-section{
@@ -20,7 +26,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 32px;;
+    gap: 2.4rem;
 }
 
 #main-weather-img{
@@ -32,6 +38,7 @@ body{
     font-size: 6rem;
     line-height: 36px;
     margin-top: -30px;
+    font-weight: bold;
 }
 
 #main-current-day{
@@ -39,12 +46,17 @@ body{
     width: 100%;
     justify-content: space-between;
     border-bottom: 1px solid white;
+    font-weight: 500;
 }
 
 #main-current-day > *{
-    padding: 1vw 5px;
-    font-size: 1.6rem;
+    padding: 1.25rem 5px;
+    font-size: 1.4rem;
     margin-bottom: 0;
+}
+
+#sub-weather-section{
+    font-weight: 400;
 }
 
 #sub-weather-section > p > i{
@@ -64,11 +76,21 @@ body{
     color: #FFFF;
     text-decoration: underline;
     text-decoration-style: wavy;
-    text-underline-offset: 3px;
+    text-underline-offset: 4px;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: 2px;
 }
 
 #weather-tab > .nav-item > .nav-link{
     color: rgb(255,255,255, 0.5);
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#pills-tabContent{
+    overflow: scroll;
+    padding-bottom: 5px;
+    padding-right: 5px;
 }
 
 #city-search{
@@ -130,6 +152,11 @@ body{
     padding-bottom: 8px;
 }
 
+#today-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+
 .bottom-weather-info > span > img{
     width: 40px;
 }
@@ -157,6 +184,7 @@ body{
     border: 1px solid rgb(0,0,0, 0.1);
     box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 25%);
     border-radius: 12px;
+    min-width: 65px;
 }
 
 .sub-info{
@@ -170,12 +198,16 @@ body{
     display: none !important;
 }
 
-.good-level{ color: #009966;}
-.moderate-level{ color: #ffde33;}
-.unhealthy-sensitive-level{ color: #ff9933}
-.unhealthy-level{ color: #cc0033;}
-.very-unhealthy-level{ color: #660099;}
-.hazardous-level{ color: #7e0023;}
+.tab-content{
+    font-weight: 500;
+}
+
+.good-level{ color: #009966; font-weight: 700;}
+.moderate-level{ color: #ffde33; font-weight: 700;}
+.unhealthy-sensitive-level{ color: #ff9933; font-weight: 700;}
+.unhealthy-level{ color: #cc0033; font-weight: 700;}
+.very-unhealthy-level{ color: #660099; font-weight: 700;}
+.hazardous-level{ color: #7e0023; font-weight: 700;}
 
 /* Animation for entering and leaving */
 .dropdown-enter-active, .dropdown-leave-active {
