@@ -12,11 +12,9 @@
                 <weather></weather>
             </div>
             
-    
             <div id="air" class="frame-style col-lg-7">
                 <air-quality></air-quality>
             </div>
-
         </div>
     </div>
 
