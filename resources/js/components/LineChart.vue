@@ -42,7 +42,7 @@ import { computed } from 'vue';
                         text: 'Precipitation Probability',
                         align: 'left',
                         offsetX: 10,
-                        offsetY: 20,
+                        offsetY: 30,
                         style:{
                             color: '#FFFFFF',
                             fontWeight: '400',
