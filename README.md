@@ -42,7 +42,7 @@ Follow these steps to set up and run the application locally:
    git clone https://github.com/your-username/weather-web-app.git
    cd weather-web-app
 
-2. Install Dependencies:
+2. **Install Dependencies**:
 
     Backend:
 
@@ -52,20 +52,20 @@ Follow these steps to set up and run the application locally:
 
         npm install
 
-3. Set Up Environment Variables: Copy .env.example to .env and configure your API keys for Open-Meteo and WAQI:
+3. **Set Up Environment Variables: Copy .env.example to .env and configure your API keys for Open-Meteo and WAQI**:
 
         OPEN_METEO_API_KEY=your_open_meteo_key
         WAQI_API_KEY=your_waqi_key
 
-4. Build Assets:
+4. **Build Assets**:
 
         npm run build
 
-5. Start Docker Containers:
+5. **Start Docker Containers**:
 
         docker-compose up
 
-6. Access the App: Visit http://localhost in your browser.
+6. **Access the App: Visit http://localhost in your browser.**
 
 ### Usage 📖
 
